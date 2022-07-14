@@ -10,8 +10,18 @@ export const postApi = createApi({
             query: () => ({
                 url: 'posts',
             }),
-        })
+        }),
+
+        deletePost: builder.mutation({
+            query: (id) => {
+                console.log('DELETE ID: ', id)
+                return {
+                    url: `posts/${id}`,
+                    method: 'DELETE'
+                }
+            }
+        }),
     })
 })
 
-export const { useGetAllPostsQuery } = postApi
+export const { useGetAllPostsQuery, useDeletePostMutation } = postApi

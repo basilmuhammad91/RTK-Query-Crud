@@ -1,13 +1,14 @@
 import { StyleSheet, FlatList, View } from 'react-native'
 import React from 'react'
-import { useGetAllPostsQuery } from '../services/Post'
+import { useDeletePostMutation, useGetAllPostsQuery } from '../services/Post'
 import PostCard from './PostCard';
 
 export const PostsList = () => {
 
     const { data } = useGetAllPostsQuery()
+    const [deletePost] = useDeletePostMutation()
 
-    const renderItem = ({item}) => <PostCard {...item} />
+    const renderItem = ({ item }) => <PostCard onDelete={(id) => deletePost(id)} {...item} />
 
     return (
         <View>
